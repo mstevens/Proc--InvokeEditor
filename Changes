@@ -8,3 +8,6 @@ Revision history for Perl extension Proc::InvokeEditor.
   - new version, incorporate feedback so $EDITOR = 'xemacs -nw'
     works, added more error checking when looping through editors
     , added editors_env and editors_prepend.
+
+1.01 13 Mar 2007
+  - Increase CPANTS score.

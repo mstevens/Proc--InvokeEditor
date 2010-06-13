@@ -17,4 +17,5 @@ WriteMakefile(
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT => 'Interface to external editor from perl', 
        AUTHOR     => 'Michael Stevens <mstevens@etla.org>') : ()),
+    'LICENSE' => 'perl',
 );
