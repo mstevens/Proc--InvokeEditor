@@ -30,6 +30,12 @@ This module requires these other modules and libraries:
 * Carp::Assert
 * File::Spec
 
+REPOSITORY
+
+This module lives on github at:
+
+http://github.com/mstevens/Proc--InvokeEditor
+
 COPYRIGHT AND LICENCE
 
 This module is licensed under the same terms as Perl itself.
