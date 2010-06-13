@@ -1,0 +1,10 @@
+Revision history for Perl extension Proc::InvokeEditor.
+
+0.01_01  Mon Aug 27 14:08:09 2001
+	- original version; created by h2xs 1.21 with options
+		-X -A -m Proc::InvokeEditor -v 0.01_01 -b 5.005_03
+
+0.01_02  Mon Aug 27 16:50 2001
+  - new version, incorporate feedback so $EDITOR = 'xemacs -nw'
+    works, added more error checking when looping through editors
+    , added editors_env and editors_prepend.
