@@ -1,9 +1,11 @@
 --- #YAML:1.0
 name:                Proc-InvokeEditor
-version:             1.01
+version:             1.02
 abstract:            Interface to external editor from perl
 license:             perl
-generated_by:        ExtUtils::MakeMaker version 6.32
+author:              
+    - Michael Stevens <mstevens@etla.org>
+generated_by:        ExtUtils::MakeMaker version 6.42
 distribution_type:   module
 requires:     
     Carp::Assert:                  0.11
@@ -11,7 +13,5 @@ requires:
     File::Temp:                    0.12
     Test::More:                    0.08
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
-    version: 1.2
-author:
-    - Michael Stevens <mstevens@etla.org>
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

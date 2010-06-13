@@ -30,7 +30,7 @@ use vars qw(@ISA %EXPORT_TAGS @EXPORT_OK @EXPORT $VERSION
 @EXPORT = qw(
 	
 );
-$VERSION = '1.01';
+$VERSION = '1.02';
 
 @DEFAULT_EDITORS = ( $ENV{'VISUAL'}, $ENV{'EDITOR'}, '/usr/bin/vi',
                      '/bin/vi', '/bin/ed'
@@ -101,6 +101,7 @@ sub cleanup {
 sub edit {
   my $self = shift;
   my $arg = shift;
+  my $suff = shift;
   # if the argument supplied is a reference to an array of lines,
   # join it together based on the input record separator
   if (ref($arg) eq 'ARRAY') {
@@ -108,9 +109,9 @@ sub edit {
   }
   my $result;
   if (ref($self)) {
-    $result = _edit($arg, $self->{'editors'}, $self->{'cleanup'});
+    $result = _edit($arg, $self->{'editors'}, $self->{'cleanup'}, $suff);
   } else {
-    $result = _edit($arg, \@DEFAULT_EDITORS, 1);
+    $result = _edit($arg, \@DEFAULT_EDITORS, 1, $suff);
   }
   if (wantarray) {
     my @result = split m|$/|, $result;
@@ -164,6 +165,8 @@ sub _edit {
   my $string = shift;
   my $er = shift;
   my $unlink = shift;
+  my $suff = shift;
+
   assert(ref($er) eq 'ARRAY');
   assert(defined $unlink);
   my @editors = @$er; 
@@ -171,8 +174,11 @@ sub _edit {
 
   my $chosen_editor = first_usable(undef, $er); 
 
+  my @suff;
+  @suff = (SUFFIX => $suff) if $suff;
+
   # get a temp file, and write the text to it
-  my ($fh, $filename) = tempfile(UNLINK => $unlink);
+  my ($fh, $filename) = tempfile(UNLINK => $unlink, @suff);
   print $fh $string;
   close $fh or die "Couldn't close tempfile [$filename]; $!";
   # start the editor
@@ -313,6 +319,14 @@ configuration parameters from the object:
   $editor->cleanup(0);
   my $result = $editor->edit($string);
 
+A optional second argument is available $suff - example usage:
+
+	my $reuslt = Proc::InvokeEditor->edit($string, '.xml');
+
+This specifies a filename suffix to be used when the editor is launched - this
+can be useful if the data in the file is of a particular type and you want to
+trigger an editor's syntax highlighting mode.
+
 =head1 TODO
 
 =over 4
@@ -327,6 +341,8 @@ Write a test suite.
 
 Michael Stevens E<lt>mstevens@etla.orgE<gt>. Also incorporating
 suggestions and feedback from Leon Brocard and Phil Pennock.
+
+Patches supplied by Tim Booth.
 
 =head1 SEE ALSO
 

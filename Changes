@@ -11,3 +11,7 @@ Revision history for Perl extension Proc::InvokeEditor.
 
 1.01 13 Mar 2007
   - Increase CPANTS score.
+
+1.02 16 Dec 2007
+  - Patches from Tim Booth tbooth@ceh.ac.uk to provide optional filename
+	suffix option.
