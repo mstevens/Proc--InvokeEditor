@@ -1,6 +1,8 @@
 package Proc::InvokeEditor;
 
 use strict;
+use warnings;
+
 use File::Temp qw(tempfile);
 use File::Spec;
 use Carp::Assert;
