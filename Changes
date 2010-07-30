@@ -15,3 +15,7 @@ Revision history for Perl extension Proc::InvokeEditor.
 1.02 16 Dec 2007
   - Patches from Tim Booth tbooth@ceh.ac.uk to provide optional filename
 	suffix option.
+
+1.04 30 Jul 2010
+  - Add a "use warnings" to keep CPANTS happy.
+
