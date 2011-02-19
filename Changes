@@ -19,3 +19,5 @@ Revision history for Perl extension Proc::InvokeEditor.
 1.04 30 Jul 2010
   - Add a "use warnings" to keep CPANTS happy.
 
+1.05 19 Feb 2011
+  - Fix README
