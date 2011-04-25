@@ -44,10 +44,11 @@ sub new {
   my $self = {
                 'editors' => \@DEFAULT_EDITORS,
                 'cleanup' => 1,
+                'keep_file' => 0,
   };
   croak("$class requires an even number of parameters") if @_ % 2;
   my %args = @_;
-  foreach my $param (qw(editors cleanup)) {
+  foreach my $param (qw(editors cleanup keep_file)) {
     if ($args{$param}) {
       $self->{$param} = $args{$param};
     }
@@ -100,6 +101,13 @@ sub cleanup {
   return $self->{'cleanup'};
 }
 
+sub keep_file {
+  my $self = shift;
+  my $keep_file = shift;
+  $self->{'keep_file'} = $keep_file if defined $keep_file;
+  return $self->{'keep_file'};
+}
+
 sub edit {
   my $self = shift;
   my $arg = shift;
@@ -111,9 +119,16 @@ sub edit {
   }
   my $result;
   if (ref($self)) {
-    $result = _edit($arg, $self->{'editors'}, $self->{'cleanup'}, $suff);
+    ($result, $self->{'filename'}) = _edit(
+      $arg,
+      $self->{'editors'},
+      $self->{'cleanup'},
+      $self->{'keep_file'},
+      $self->{'filename'},
+      $suff,
+    );
   } else {
-    $result = _edit($arg, \@DEFAULT_EDITORS, 1, $suff);
+    ($result) = _edit($arg, \@DEFAULT_EDITORS, 1, 0, undef, $suff);
   }
   if (wantarray) {
     my @result = split m|$/|, $result;
@@ -167,6 +182,8 @@ sub _edit {
   my $string = shift;
   my $er = shift;
   my $unlink = shift;
+  my $keep_file = shift;
+  my $filename = shift;
   my $suff = shift;
 
   assert(ref($er) eq 'ARRAY');
@@ -180,9 +197,17 @@ sub _edit {
   @suff = (SUFFIX => $suff) if $suff;
 
   # get a temp file, and write the text to it
-  my ($fh, $filename) = tempfile(UNLINK => $unlink, @suff);
-  print $fh $string;
-  close $fh or die "Couldn't close tempfile [$filename]; $!";
+  if (defined($filename) && $keep_file) {
+    open my $fh, '>', $filename or die "Couldn't open tempfile [$filename]; $!";
+    print $fh $string;
+    close $fh or die "Couldn't close tempfile [$filename]; $!";
+  }
+  else {
+    my $fh;
+    ($fh, $filename) = tempfile(UNLINK => $unlink, @suff);
+    print $fh $string;
+    close $fh or die "Couldn't close tempfile [$filename]; $!";
+  }
   # start the editor
   my $rc = system @$chosen_editor, $filename;
   # check what happened - die if it all went wrong.
@@ -200,7 +225,12 @@ sub _edit {
   { local $/; $result = <FH>; }
   close FH or die "Couldn't close [$filename]: $!";
   # return as string
-  return $result;
+  if ($keep_file) {
+    return ($result, $filename);
+  }
+  else {
+    return ($result);
+  }
 }
 
 1;
@@ -254,6 +284,12 @@ default list will be used.
 This specifies whether the temporary file created should be unlinked
 when the program exits. The default is to unlink the file.
 
+=item C<keep_file>
+
+This specifies whether to reuse the same temporary file between invocations
+of C<edit> on the same Proc::InvokeEditor object. The default is to use a
+new file each time.
+
 =back
 
 =head2 editors()
@@ -282,6 +318,13 @@ This method gets or sets whether to cleanup temporary files after the
 program exits. If no argument is supplied, it returns the current value
 from the object. If an argument is supplied, it changes the value and
 returns the new object. The argument should be any true or false value.
+
+=head2 keep_file()
+
+This method gets or sets whether to reuse temporary files. If no
+argument is supplied, it returns the current value from the object. If
+an argument is supplied, it changes the value and returns the new
+object. The argument should be any true or false value.
 
 =head2 first_usable()
 
