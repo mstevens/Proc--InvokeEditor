@@ -24,3 +24,6 @@ Revision history for Perl extension Proc::InvokeEditor.
 
 1.06 25 Apr 2011
   - Apply patch from Jesse Luehrs to optionally reuse temp file names.
+
+1.07 04 Aug 2014
+  - Apply patch from Brian Fraser to work on android.

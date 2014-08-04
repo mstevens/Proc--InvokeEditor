@@ -1,4 +1,4 @@
-Proc::InvokeEditor version 1.05
+Proc::InvokeEditor version 1.07
 =======================
 
 This module provides a simple API to calling an external text editor
@@ -29,6 +29,7 @@ This module requires these other modules and libraries:
 * Test::More
 * Carp::Assert
 * File::Spec
+* IPC::Cmd
 
 REPOSITORY
 
@@ -40,4 +41,4 @@ COPYRIGHT AND LICENCE
 
 This module is licensed under the same terms as Perl itself.
 
-Copyright (C) 2001,2010 Michael Stevens
+Copyright (C) 2001,2010,2011,2014 Michael Stevens and others

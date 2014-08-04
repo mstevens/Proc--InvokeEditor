@@ -9,6 +9,7 @@ WriteMakefile(
                        'Test::More' => 0.08,
                        'Carp::Assert' => 0.11,
                        'File::Spec' => 0.82,
+                       'IPC::Cmd' => 0,
     }, # e.g., Module::Name => 1.1
     'dist' => {
                 'COMPRESS' => 'gzip -9f',

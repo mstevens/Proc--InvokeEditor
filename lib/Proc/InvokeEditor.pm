@@ -5,6 +5,7 @@ use warnings;
 
 use File::Temp qw(tempfile);
 use File::Spec;
+use IPC::Cmd qw(can_run);
 use Carp::Assert;
 use Fcntl;
 File::Temp->safe_level( File::Temp::HIGH );
@@ -32,10 +33,11 @@ use vars qw(@ISA %EXPORT_TAGS @EXPORT_OK @EXPORT $VERSION
 @EXPORT = qw(
 	
 );
-$VERSION = '1.06';
+$VERSION = '1.07';
 
 @DEFAULT_EDITORS = ( $ENV{'VISUAL'}, $ENV{'EDITOR'}, '/usr/bin/vi',
-                     '/bin/vi', '/bin/ed'
+                     '/bin/vi', '/bin/ed',
+                     map({ can_run($_) } qw(vi ed))
 );
 
 sub new {
