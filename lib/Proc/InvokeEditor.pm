@@ -39,6 +39,9 @@ $VERSION = '1.07';
                      '/bin/vi', '/bin/ed',
                      map({ can_run($_) } qw(vi ed))
 );
+if ($^O eq 'MSWin32') {
+  push @DEFAULT_EDITORS, 'notepad.exe';
+}
 
 sub new {
   my $proto = shift;
