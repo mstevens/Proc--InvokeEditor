@@ -48,6 +48,6 @@
          "web" : "https://github.com/mstevens/Proc--InvokeEditor"
       }
    },
-   "version" : "1.08",
+   "version" : "1.09",
    "x_serialization_backend" : "JSON::PP version 2.27300_01"
 }
