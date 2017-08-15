@@ -33,7 +33,7 @@ use vars qw(@ISA %EXPORT_TAGS @EXPORT_OK @EXPORT $VERSION
 @EXPORT = qw(
 	
 );
-$VERSION = '1.09';
+$VERSION = '1.11';
 
 @DEFAULT_EDITORS = ( $ENV{'VISUAL'}, $ENV{'EDITOR'}, '/usr/bin/vi',
                      '/bin/vi', '/bin/ed',
