@@ -42,3 +42,7 @@ Revision history for Perl extension Proc::InvokeEditor.
 
 1.12 15 Aug 2017
   - Properly generate META.json
+
+1.13 16 Aug 2017
+  - Add LICENSE to docs and meta tests
+
