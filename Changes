@@ -1,44 +1,27 @@
-Revision history for Perl extension Proc::InvokeEditor.
+# Welcome to the open-source Contributors portrait! [Live Version](https://mattcrl.github.io/Contributors-portraits/index.html)
+------
+For the Hacktoberfest, I wanna help beginners having their first PR on a simple HTML/CSS/Bootstrap project.
 
-0.01_01  Mon Aug 27 14:08:09 2001
-	- original version; created by h2xs 1.21 with options
-		-X -A -m Proc::InvokeEditor -v 0.01_01 -b 5.005_03
+So the main goal of this repository is to regroup a lot of contributors with their name/nickname, an image of their choice, and a little description of them
 
-0.01_02  Mon Aug 27 16:50 2001
-  - new version, incorporate feedback so $EDITOR = 'xemacs -nw'
-    works, added more error checking when looping through editors
-    , added editors_env and editors_prepend.
+-----
+## Rules
+- Use Bootstrap cards model, you can copy/paste the first model I've done and replaced it with your personal information
+- No insults/offensive language, PR will be refused and marked as **invalid**
+- Play the game with your description/image. I won't accept PR if someone just uses a placeholder and write random work as a description!
+- For the image, you can add your file in the **/images** folder, or just add a link of the image of your choice
 
-1.01 13 Mar 2007
-  - Increase CPANTS score.
+## I want to do more
+As you see, the project has no "style", feel free to enhance it as you wish and share your ideas (don't do ugly things I won't accept it !). Everything must be in the files that are already created (index.html & style.css), and well indented.
+It's really easy to do a simple HTML/CSS pull request, so at least indent your code so the project will stay proper :).
 
-1.02 16 Dec 2007
-  - Patches from Tim Booth tbooth@ceh.ac.uk to provide optional filename
-	suffix option.
+## How to contribute
+- Fork the project
+- Clone it
+- Push your job on your repository
+- When the job is done, submit a pull request, and that's it!
 
-1.04 30 Jul 2010
-  - Add a "use warnings" to keep CPANTS happy.
+## More 
+Feel free to submit ideas by opening issues, or just by submitting a pull request. For the moment, this project only supports HTML/CSS-Bootstrap to help beginners. But I'll see later if we can add some JS to it if someone has a nice idea :).
 
-1.05 19 Feb 2011
-  - Fix README
-
-1.06 25 Apr 2011
-  - Apply patch from Jesse Luehrs to optionally reuse temp file names.
-
-1.07 04 Aug 2014
-  - Apply patch from Brian Fraser to work on android.
-
-1.08 03 Aug 2017
-  - Patch from Max Maischein for windows support.
-
-1.09 03 Aug 2017
-  - Disable author tests for now.
-
-1.10 15 Aug 2017
-  - Move to dzil to update packaging to modern standards
-
-1.11 15 Aug 2017
-  - Fix stupid mistake
-
-1.12 15 Aug 2017
-  - Properly generate META.json
+### There's a lot of PR and I'm alone to check it so, sorry if it takes some time, I do my best to check them all. If you have an old PR please merge it with the actual version of a master to fix conflicts, thanks!
